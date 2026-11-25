@@ -17,5 +17,19 @@ def register():
 
     pelaajan_lisays(yhteys,matkustaja)
     return jsonify({"message": f"matkustaja {matkustaja} luotu"})
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    data=request.get_json()
+    matkustaja= data.get("username")
+
+    yhteys=luo_yhteys()
+
+    if not pelaajan_tarkistus(yhteys,matkustaja):
+         return jsonify({"error": "pelaaja ei löytynyt"})
+
+
+    return jsonify({"message": f"Tervetuloa {matkustaja}  peliin"})
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=3000)
