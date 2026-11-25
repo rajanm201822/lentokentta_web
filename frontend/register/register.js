@@ -5,7 +5,7 @@ const  username=document.getElementById("username").value;
 const viesti = document.getElementById("viesti")
 
 if (!username){
-    viesti.textContent("syötä matkustaja")
+    viesti.textContent= "syötä matkustaja"
 
 }
 
