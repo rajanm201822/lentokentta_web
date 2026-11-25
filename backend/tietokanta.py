@@ -1,6 +1,5 @@
 import mysql.connector
-from flask import Flask
-from flask_cors import CORS
+
 
 
 def luo_yhteys():
@@ -15,28 +14,21 @@ def luo_yhteys():
     )
 
 
-app = Flask(__name__)
-CORS(app)
 
-
-@app.route('/ticket/<nimi>/<int:arvo>')
-def aseta_ticket(nimi, arvo):
-    if arvo not in (0, 1):
-        return {"virhe": "arvon pitää olla 0 tai 1"}, 400
-
-    yhteys = luo_yhteys()
+def lipun_haku(yhteys, matkustaja):
     kursori = yhteys.cursor()
-    sql = "UPDATE game SET has_ticket = %s WHERE screen_name = %s"
-    kursori.execute(sql, (arvo, nimi))
+    sql = "select has_ticket from game where screen_name=%s"
+    kursori.execute(sql, (matkustaja,))
+    tulos = kursori.fetchone()
     kursori.close()
-    yhteys.close()
-    return {"nimi": nimi, "has_ticket": arvo}
+    return tulos
 
 
-if __name__ == '__main__':
-    app.run(port=5000)
-
-
+def lipun_update(yhteys, matkustaja, arvo):
+    kursori = yhteys.cursor()
+    sql = "update game set has_ticket=%s where screen_name=%s"
+    kursori.execute(sql, (arvo, matkustaja))
+    kursori.close()
 
 
 
