@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+br{
+    display: none;
+}
+h1{
+    font-size: 4rem;
+    letter-spacing: 1rem;
+    margin-bottom: 4rem;
+}
+
+#username{
+    width: 15%;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border: solid 1px #ccc;
+    border-radius: 1rem;
+    background-color: lightgray;
+    color: black;
+
+}
+#button{
+    width: 5%;
+    padding: 0.5rem 1rem;
+    border-radius: 5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6rem;
+    cursor: pointer;
+}
+#viesti{
+    margin-top: 5rem;
+    min-height:20rem;
+    font-weight:bold
+}
