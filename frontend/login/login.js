@@ -15,5 +15,14 @@ document.getElementById("button").addEventListener('click',async()  => {
 
     })
     const data = await response.json()
-    viesti.textContent=data.error||data.message
-})
+    if(data.error){
+        viesti.textContent=data.error||data.message
+    }
+    else{
+        viesti.textContent=data.message
+        localStorage.setItem("matkustaja",username)
+
+            location.href = "/lentokentta_web/frontend/intro_fe/intro.html";
+
+    }
+});
